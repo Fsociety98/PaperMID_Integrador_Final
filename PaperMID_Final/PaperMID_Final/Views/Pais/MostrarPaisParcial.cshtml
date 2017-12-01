@@ -1,0 +1,43 @@
+﻿@using System.Data;
+@model DataTable
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Lista Países</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Código</th>
+                                <th class="text-center">Nombre del País</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow item in Model.Rows)
+                            {
+                                <tr id="Fila_@item["IdPais"]">
+                                    <td class="text-center">@item["IdPais"]</td>
+                                    <td class="text-center">@item["NombrePais"]</td>
+                                    <td class="td-actions text-center">
+                                        <a type="button" rel="tooltip" title="Editar" class="btn btn-success btn-simple btn-xs" href="@Url.Action("ActualizarPais", "Pais", new { id = @item["IdPais"] })">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs" href="@Url.Action("EliminarPais", "Pais", new { id = @item["IdPais"] })">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>

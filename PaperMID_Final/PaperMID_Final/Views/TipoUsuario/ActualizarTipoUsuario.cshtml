@@ -1,0 +1,56 @@
+﻿@model PaperMID.BO.TipoUsuarioBO
+
+@{
+    ViewBag.Title = "ActualizarTipoUsuario";
+    Layout = "~/Views/Master/_LayoutAdministrador.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <!--Inicio Contenido-->
+                <div class="header">
+                    <h2 class="title">Tipo Usuario</h2>
+                </div>
+                <div class="content">
+                    <!--Contenido Formulario-->
+                    @using (Ajax.BeginForm("ActualizarDatosTUser", "TipoUsuario", new AjaxOptions { HttpMethod = "POST" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Código</label>
+                                                <input type="hidden" name="IdTipoUsuario" value="@Model.IdTipoUsuario" /><!--Input oculto/Sirve para recuperar el ID-->
+                                                <input type="text" class="form-control" disabled value="@Model.IdTipoUsuario" /><!--Disable / no manda datos a ActionResult-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label>Tipo Usuario</label>
+                                                <input type="text" class="form-control" name="TipoUsu" value="@Model.TipoUsu" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="=row" style="padding:0,20px;">
+                                <div class="col-md-12">
+                                    <!--col-md-10 col-md-offset-1-->
+                                    <button type="submit" class="btn btn-info btn-fill btn-block">Editar</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    }
+
+                </div><!--Contenido Formulario-->
+            </div><!--Fin Contenido-->
+        </div>
+    </div>
+</div>
+

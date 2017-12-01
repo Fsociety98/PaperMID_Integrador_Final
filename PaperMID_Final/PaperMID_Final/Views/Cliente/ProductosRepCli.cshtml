@@ -1,0 +1,42 @@
+﻿@using System.Data;
+@model DataTable
+@{
+    ViewBag.Title = "ProductosRepCli";
+    Layout = "~/Views/Master/_LayoutCliente.cshtml";
+}
+<div class="row tim-row">
+    <div class="card card-signup">
+        <div class="form">
+                <div>
+                    <h2 style="text-align:center">Productos</h2>
+                </div>
+                @* Aqui empieza el repeater *@
+                @foreach (DataRow row in Model.Rows)
+                {
+
+                    <article class="embed-responsive-item col-lg-4 card__thumb">
+                        <div class="card__body">
+                            <a href="#">
+                                @{
+                                    String Photo = "data:image/jpeg;base64," + Convert.ToBase64String((byte[])row["ImagenFoto"]);
+                                    <img src="@Photo" title="@row["DescripcionProd"]" style="width:300px; height:300px;" class="img-rounded">
+                                }
+                            </a>
+                            <h2 class="card__title"><a href="#">@row["NombreProd"]</a></h2>
+                            <div class="card__subtitle">$<b>@row["PrecioProd"]</b> MXN </div>
+                        </div>
+                        <footer class="card__footer" style="width:80%;">
+                            @using (Ajax.BeginForm("Actualizar_Estatus_Aprobado_a_Desaprobado", "Admin_principal_", new { id = @row["IdProducto"] }, new AjaxOptions()
+                            { HttpMethod = "POST" }))
+                            {@Html.AntiForgeryToken() <button class="btn btn-primary btn-round">
+                                <i class="glyphicon glyphicon-shopping-cart"> Agregar</i>
+                            </button>}
+                        </footer>
+                    </article>
+                 }
+        </div>
+    </div>
+</div>
+
+
+
