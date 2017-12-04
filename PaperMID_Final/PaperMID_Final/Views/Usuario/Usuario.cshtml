@@ -3,178 +3,257 @@
     ViewBag.Title = "Usuario";
     Layout = "~/Views/Master/_LayoutAdministrador.cshtml";
 }
-<section class="content-header">
-    <h1>
-        Usuarios
-    </h1>
-</section>
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Datos</h3>
-                </div>
-                @using (Ajax.BeginForm("Agregar_Usuario_Administrador", "Usuario", new AjaxOptions { HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
+<!--Plugin Fortaleza de Contraseña / importante seguir este orden-->
+<link href="~/Style/Back/dist/css/strength.css" rel="stylesheet" />
+<script src="~/Style/Back/dist/js/password_strength.js"></script>
+<script src="~/Style/Back/dist/js/jquery-strength.js"></script>
 
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Nombre</label>
-                                                <input class="form-control" type="text" name="NombreUsu" />
+<div class="ajax-content container-fluid">
+    <section class="content-header">
+        <h1>
+            Usuarios
+        </h1>
+    </section>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos Personales</h3>
+                    </div>
+                    @using (Ajax.BeginForm("Agregar_Usuario_Administrador", "Usuario", new AjaxOptions { HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Nombre</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Nombre" type="text" name="NombreUsu" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Apellido Paterno</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa  fa-user"></i>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Apellido Paterno" type="text" name="ApellidoPaternoUsu" required />
+                                                    </div>                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Apellido Materno</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa  fa-user"></i>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Apellido Materno" type="text" name="ApellidoMaternoUsu" required />
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Correo</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input class="form-control" type="email" name="CorreoUsu" placeholder="Correo" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@*@*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Teléfono</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="tel" placeholder="Teléfono" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask name="TelefonoUsu" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Fecha de Nacimiento</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" placeholder="Fecha de Nacimiento" class="form-control pull-right" id="datepicker" name="FechaNacimientoUsu" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Tipo Usuario</label>
+                                                      @Html.DropDownList("IdTipoUsuario1", null, htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;" })
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Apellido Paterno</label>
-                                                <input class="form-control" type="text" name="ApellidoPaternoUsu" />
+                                    <div class="=row">
+                                        <div class="col-md-4">
+                                            <br />
+                                            <div style="text-align:center; border:1px dashed #3c8dbc;">
+                                                <output id="ContenedorImg">
+                                                    @*Elemento dondé se cargará la nueva imagen*@
+                                                    <img src="~/Style/Back/dist/img/Preview_Usuario.png" class="PreviewImagen" />
+                                                </output>
+                                                <br />
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Apellido Materno</label>
-                                                <input class="form-control" type="text" name="ApellidoMaternoUsu" />
+                                            <br />
+                                            <div class="file-loading">
+                                                <input type="file" id="files" name="ImagenUsu" required />
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Correo</label>
-                                                <input class="form-control" type="email" name="CorreoUsu" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Teléfono</label>
-                                                <input class="form-control" type="tel" name="TelefonoUsu" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Fecha de Nacimiento</label>
-                                                <input class="form-control" type="text" name="FechaNacimientoUsu" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tipo Usuario</label>
-                                                @Html.DropDownList("IdTipoUsuario1", null, htmlAttributes: new { @class = "form-control" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="=row">
-                                    <div class="col-md-4">
-                                        <br />
-                                        <div style="text-align:center; border:1px dashed #3c8dbc;">
-                                            <output id="ContenedorImg">
-                                                @*Elemento dondé se cargará la nueva imagen*@
-                                                <img src="~/Style/Back/dist/img/PreviewProducto.png" class="PreviewImagen" />
-                                            </output>
                                             <br />
                                         </div>
-                                        <br />
-                                        <div class="file-loading">
-                                            <input type="file" id="files" name="ImagenUsu" />
+                                    </div>
+                                </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dirección</h3>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Calle</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    C.
+                                                </div>
+                                                <input class="form-control" placeholder="Calle" type="text" name="CalleDir" required />
+                                            </div> 
                                         </div>
-                                        <br />
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Calle</label>
-                                        <input class="form-control" type="text" name="CalleDir" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Cruzamientos</label>
-                                        <input class="form-control" type="text" name="CruzaDir" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Colonia</label>
-                                        <input class="form-control" type="text" name="ColoniaDir" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Código Postal</label>
-                                        <input class="form-control" type="text" name="CPDir" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Número Interior</label>
-                                                <input class="form-control" type="text" name="NumInteDir" />
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Cruzamientos</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    CRZ.
+                                                </div>
+                                                <input class="form-control" placeholder="Cruzamientos" type="text" name="CruzaDir" required />
+                                            </div> 
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Número Exterior</label>
-                                                <input class="form-control" type="text" name="NumExteDir" />
-                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Colonia</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    COL.
+                                                </div>
+                                                <input class="form-control" placeholder="Colonia" type="text" name="ColoniaDir" required />
+                                            </div> 
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Municipio</label>
-                                                @Html.DropDownList("IdMunicipio1", null, htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Código Postal</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    CP.
+                                                </div>
+                                                <input class="form-control" placeholder="Código Postal" type="text" name="CPDir" required />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Número Interior</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            INT.
+                                                        </div>
+                                                        <input class="form-control" placeholder="Número Interior" type="text" name="NumInteDir" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Número Exterior</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            EXT.
+                                                        </div>
+                                                        <input class="form-control" placeholder="Número Exterior" type="text" name="NumExteDir" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Municipio</label>
+                                                    @Html.DropDownList("IdMunicipio1", null, htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Usuario</h3>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Usuario</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input class="form-control" placeholder="Usuario" type="text" name="Usuario" required />
+                                            </div>                     
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                            <input class="form-control check-seguridad" placeholder="Contraseña" type="password" name="ContraseñaUsu" required /> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Confirmar Contraseña</label>
+                                            <input class="form-control check-seguridad" placeholder="Confirmar Contraseña" type="password" name="ConfirmarContraseñaUsu" required />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Usuario</label>
-                                        <input class="form-control" type="text" name="Usuario" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Contraseña</label>
-                                        <input class="form-control" type="password" name="ContraseñaUsu" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Confirmar Contraseña</label>
-                                        <input class="form-control" type="password" name="ConfirmarContraseñaUsu" />
-                                    </div>
-                                </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">Guardar</button>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-info pull-right">Guardar</button>
-                        </div>
-                    </form>
-                }
+                        </form>
+                    }
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
-@{ Html.RenderAction("List_Usuarios", "Usuario");}
+    </section>
+    @{ Html.RenderAction("List_Usuarios", "Usuario");}
+</div>
+
 <style>
     .PreviewImagen {
         height: 200px;
@@ -207,3 +286,34 @@
 
     document.getElementById('files').addEventListener('change', archivo, false);
 </script> @*Script para la Preview de la imagen*@
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        autoclose: true
+    })
+</script>
+<script type="text/javascript">
+    jQuery(function ($) {
+
+        $(".check-seguridad").strength({
+            templates: {
+                toggle: '<span class="input-group-addon"><span class="glyphicon glyphicon-eye-open {toggleClass}"></span></span>'
+
+            },
+            scoreLables: {
+                empty: 'Vacío',
+                invalid: 'Invalido',
+                weak: 'Débil',
+                good: 'Bueno',
+                strong: 'Fuerte'
+            },
+            scoreClasses: {
+                empty: '',
+                invalid: 'label-danger',
+                weak: 'label-warning',
+                good: 'label-info',
+                strong: 'label-success'
+            },
+
+        });
+    });
+</script>
