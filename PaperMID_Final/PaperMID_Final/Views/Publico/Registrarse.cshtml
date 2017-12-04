@@ -41,8 +41,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <input class="datepicker form-control" type="text" name="FechaNacimientoUsu" placeholder = "Fecha de Nacimiento" />
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Fecha de Nacimiento</label>
+                                            <input class="datepicker form-control" type="datetime" name="FechaNacimientoUsu" placeholder = "Fecha de Nacimiento" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -88,7 +89,7 @@
                                 @{ Html.RenderAction("DireccionRegistro", "Publico");}
                                 <br />
                                 <output id="ContenedorImg">@*Elemento dondé se cargará la nueva imagen*@      
-                                    <img src="~/Style/assets/img/PreviewProfile.png" class="PreviewImagen" />
+                                    <img src="~/Style/Back/dist/img/avatar5.png" class="PreviewImagen" />
                                 </output>
                                 <br />
                                 <div class="file-loading">

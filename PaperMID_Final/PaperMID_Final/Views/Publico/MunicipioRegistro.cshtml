@@ -3,6 +3,7 @@
 <div class="col-md-3">
     <div class="form-group">
         <div class="form-group label-floating">
+            <label class="control-label">Municipio</label>
             @Html.DropDownListFor(x => x.IdMunicipio1, new SelectList(Model.municipios, "IdMunicipio", "NombreMuni"), new { @class = "form-control" })
         </div>
     </div>
