@@ -11,18 +11,31 @@ namespace PaperMID.Controllers
     public class EmpresaController : Controller
     {
         // GET: Empresa
-        
-        EmpresaModel oEmpresa = new EmpresaModel();
+
+        EmpresaModel oEmpresa;
+        BO.EmpresaBO _oEmpresaBO;
+        public EmpresaController()
+        {
+            oEmpresa = new EmpresaModel();
+        }
         public ActionResult ActualizarEmpresa()
         {
             return View(oEmpresa.Obtener_Empresa(1));
         }
-
-        public ActionResult ActuaDatosEmpre(EmpresaBO oEmpre)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActuaDatosEmpre(String IdEmpresa,String NombreEmpre,String TelefenoEmpre,String CorreoEmpre,String MisionEmpre,String VisionEmpre,String ValoresEmpre)
         {
-            oEmpresa.Modificar(oEmpre);
-            ActualizarEmpresa();
-            return View("ActualizarEmpresa");
+            _oEmpresaBO = new EmpresaBO();
+            _oEmpresaBO.IdEmpresa = Convert.ToInt32(IdEmpresa);
+            _oEmpresaBO.NombreEmpre = NombreEmpre;
+            _oEmpresaBO.TelefenoEmpre = TelefenoEmpre;
+            _oEmpresaBO.CorreoEmpre = CorreoEmpre;
+            _oEmpresaBO.MisionEmpre = MisionEmpre;
+            _oEmpresaBO.VisionEmpre = VisionEmpre;
+            _oEmpresaBO.ValoresEmpre = ValoresEmpre;
+            oEmpresa.Modificar(_oEmpresaBO);
+            return RedirectToAction("Index", "Administrador");
         }
     }
 }

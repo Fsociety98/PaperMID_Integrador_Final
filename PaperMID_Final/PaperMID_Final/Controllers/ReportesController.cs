@@ -35,7 +35,7 @@ namespace PaperMID.Controllers
             }
             #endregion Datos dummy
             string DirRepor = "~/Reportes/Reportes/";
-            string urlArchivo = string.Format("{0}.{1}", "ProveedorRepor", "rdlc");
+            string urlArchivo = string.Format("{0}.{1}", "Reporte_Provedor", "rdlc");
             string FullReport = string.Format("{0}{1}", this.HttpContext.Server.MapPath(DirRepor), urlArchivo);
             ReportViewer reporte = new ReportViewer();
             reporte.Reset();
@@ -45,7 +45,7 @@ namespace PaperMID.Controllers
             reporte.LocalReport.Refresh();
             byte[] file = reporte.LocalReport.Render("PDf");
 
-            return File(new MemoryStream(file).ToArray(), System.Net.Mime.MediaTypeNames.Application.Octet, string.Format("{0}{1}", "Reporte_DetalleVenta.", "PDF"));
+            return File(new MemoryStream(file).ToArray(), System.Net.Mime.MediaTypeNames.Application.Octet, string.Format("{0}{1}", "Reporte_Proveedores_"+DateTime.Now+".", "PDF"));
         }
 
         public ActionResult ReporteUsuarioClientes()
@@ -156,13 +156,13 @@ namespace PaperMID.Controllers
         public ActionResult ReporteProducto()
         {
             #region Datos dummy
-            string query = ("SELECT IdProducto,NombreProd,DescripcionProd,PrecioProd,DescuentoProd,CantidadDisponibleProd,CantidadMinimaProd,IdTipoProducto1,IdProveedor1,FechaRegistroProd FROM Producto WHERE StatusProd=1");
+            string query = ("SELECT CódigoProd,NombreProd,DescripcionProd,PrecioProd,DescuentoProd,CantidadDisponibleProd,CantidadMinimaProd,IdTipoProducto1,IdProveedor1,FechaRegistroProd FROM Producto WHERE StatusProd=1");
             var result = Con.TablaConnsulta(query);
             List<ProductoBO> Productos = new List<ProductoBO>();
             foreach (DataRow Pro in result.Rows)
             {
                 var ProductoBO = new ProductoBO();
-                ProductoBO.IdProducto = Convert.ToInt32(Pro[0].ToString());
+                ProductoBO.CódigoProd = Pro[0].ToString();
                 ProductoBO.NombreProd = Pro[1].ToString();
                 ProductoBO.DescripcionProd = Pro[2].ToString();
                 ProductoBO.PrecioProd = Convert.ToDouble(Pro[3].ToString());
@@ -176,17 +176,17 @@ namespace PaperMID.Controllers
             }
             #endregion Datos dummy
             string DirRepor = "~/Reportes/Reportes/";
-            string urlArchivo = string.Format("{0}.{1}", "ProductoRepor", "rdlc");
+            string urlArchivo = string.Format("{0}.{1}", "Reporte_Producto", "rdlc");
             string FullReport = string.Format("{0}{1}", this.HttpContext.Server.MapPath(DirRepor), urlArchivo);
             ReportViewer reporte = new ReportViewer();
             reporte.Reset();
             reporte.LocalReport.ReportPath = FullReport;
-            ReportDataSource DatosDS = new ReportDataSource("DSProducto", Productos);
+            ReportDataSource DatosDS = new ReportDataSource("DS_Producto", Productos);
             reporte.LocalReport.DataSources.Add(DatosDS);
             reporte.LocalReport.Refresh();
             byte[] file = reporte.LocalReport.Render("PDf");
 
-            return File(new MemoryStream(file).ToArray(), System.Net.Mime.MediaTypeNames.Application.Octet, string.Format("{0}{1}", "Reporte_DetalleVenta.", "PDF"));
+            return File(new MemoryStream(file).ToArray(), System.Net.Mime.MediaTypeNames.Application.Octet, string.Format("{0}{1}", "Reporte_Productos.", "PDF"));
         }
 
 

@@ -21,6 +21,7 @@ namespace PaperMID.Controllers
         public ActionResult Producto()
         {
             var ProductoBO = new BO.ProductoBO();
+            ViewBag.showSuccessAlert = false;
             //Cargar el DropDownList por ViewBag para poder usar AJAX.
             ViewBag.IdTipoProducto1 = new SelectList(ProductoBO.TiposProducto = _oProductoModel.Lista_Tipo_Producto(), "IdTipoProducto", "TipoProducto");
             ViewBag.IdProveedor1 = new SelectList(ProductoBO.Proveedores = _oProductoModel.Lista_Proveedor(), "IdProveedor", "NombreProv");
@@ -114,6 +115,7 @@ namespace PaperMID.Controllers
         public ActionResult Eliminar_Producto(String CódigoProd)
         {
             _oProductoModel.Eliminar(CódigoProd);
+            ViewBag.showSuccessAlert = true;
             return RedirectToAction("Producto", "Producto");
         }
     }

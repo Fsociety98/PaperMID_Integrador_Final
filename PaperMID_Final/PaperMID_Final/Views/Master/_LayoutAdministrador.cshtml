@@ -59,6 +59,7 @@
     <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.js"></script>
     <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
     @{
         if (Session["IdUsuario"] != null)
         {
@@ -75,7 +76,7 @@
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
-            <a href="index2.html" class="logo">    
+            <a href="@Url.Action("Index","Administrador")" class="logo">    
                 <span class="logo-mini"><b>P</b>MID</span>
                 <span class="logo-lg"><b>Paper</b>MID</span>
             </a>

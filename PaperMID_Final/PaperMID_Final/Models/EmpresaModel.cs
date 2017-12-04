@@ -18,8 +18,8 @@ namespace PaperMID.Models
         public int Modificar(object Obj)
         {
             BO.EmpresaBO BO = (BO.EmpresaBO)Obj;
-            SqlCommand Cmd = new SqlCommand("UPDATE [dbo].[Empresa] SET [NombreEmpre] = @NombreEmpre,[MisionEmpre] = @MisionEmpre,[VisionEmpre] = @VisionEmpre,[ValoresEmpre] = @ValoresEmpre,[CorreoEmpre] = @CorreoEmpre,[TelefenoEmpre] = @TelefenoEmpre,[FacebookEmpre] = @FacebookEmpre,[IdDireccion1] = @IdDireccion1 WHERE IdEmpresa=@IdEmpresa");
-            //@ImagenLogoEmpre ,@ValoresEmpre,@CorreoEmpre,@TelefenoEmpre,@FacebookEmpre,@IdDireccion1
+            SqlCommand Cmd = new SqlCommand("UPDATE [dbo].[Empresa] SET [NombreEmpre] = @NombreEmpre,[MisionEmpre] = @MisionEmpre,[VisionEmpre] = @VisionEmpre,[ValoresEmpre] = @ValoresEmpre,[CorreoEmpre] = @CorreoEmpre,[TelefenoEmpre] = @TelefenoEmpre WHERE IdEmpresa=@IdEmpresa");
+            //@ImagenLogoEmpre ,@ValoresEmpre,@CorreoEmpre,@TelefenoEmpre,@FacebookEmpre,@IdDireccion1 ,[FacebookEmpre] = @FacebookEmpre,[IdDireccion1] = @IdDireccion1
             Cmd.Parameters.Add("@IdEmpresa", SqlDbType.Int).Value = BO.IdEmpresa;
             Cmd.Parameters.Add("@NombreEmpre", SqlDbType.VarChar).Value = BO.NombreEmpre;
             Cmd.Parameters.Add("@MisionEmpre", SqlDbType.VarChar).Value = BO.MisionEmpre;
@@ -30,8 +30,8 @@ namespace PaperMID.Models
             Cmd.Parameters.Add("@ValoresEmpre", SqlDbType.VarChar).Value = BO.ValoresEmpre;
             Cmd.Parameters.Add("@CorreoEmpre", SqlDbType.VarChar).Value = BO.CorreoEmpre;
             Cmd.Parameters.Add("@TelefenoEmpre", SqlDbType.VarChar).Value = BO.TelefenoEmpre;
-            Cmd.Parameters.Add("@FacebookEmpre", SqlDbType.VarChar).Value = BO.FacebookEmpre;
-            Cmd.Parameters.Add("@IdDireccion1", SqlDbType.Int).Value = BO.IdDireccion1;
+            //Cmd.Parameters.Add("@FacebookEmpre", SqlDbType.VarChar).Value = BO.FacebookEmpre;
+            //Cmd.Parameters.Add("@IdDireccion1", SqlDbType.Int).Value = BO.IdDireccion1;
             Cmd.CommandType = CommandType.Text;
             return oConexion.EjecutarSQL(Cmd);
         }
