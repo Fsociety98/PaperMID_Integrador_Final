@@ -9,7 +9,7 @@ namespace PaperMID.Models
     public class UsuarioModel : Plantilla
     {
         private String hashkey = "*hg849gh84th==3tg7-534d=_";
-        public int IdDireccion2;
+        public int IdDireccion2,IdTipoUsuario1,IdMunicipio1;
         ConexionModel oConexion;
         BO.MéthodesBO oMéthodesBO;
         public UsuarioModel()
@@ -40,10 +40,10 @@ namespace PaperMID.Models
             Cmd.Parameters.Add("@NombreUsu", SqlDbType.VarChar).Value = oBO.NombreUsu;
             Cmd.Parameters.Add("@ApellidoPaternoUsu", SqlDbType.VarChar).Value = oBO.ApellidoPaternoUsu;
             Cmd.Parameters.Add("@ApellidoMaternoUsu", SqlDbType.VarChar).Value = oBO.ApellidoMaternoUsu;
-            Cmd.Parameters.Add("@FechaNacimientoUsu", SqlDbType.Date).Value = oBO.FechaNacimientoUsu;
+            Cmd.Parameters.Add("@FechaNacimientoUsu", SqlDbType.VarChar).Value = oBO.FechaNacimientoUsu;
             Cmd.Parameters.Add("@TelefonoUsu", SqlDbType.VarChar).Value = oBO.TelefonoUsu;
             Cmd.Parameters.Add("@CorreoUsu", SqlDbType.VarChar).Value = oBO.CorreoUsu;
-            Cmd.Parameters.Add("@IdTipoUsuario1", SqlDbType.Int).Value = 2;
+            Cmd.Parameters.Add("@IdTipoUsuario1", SqlDbType.Int).Value = oBO.IdTipoUsuario1;
             Cmd.Parameters.Add("@IdDireccion2", SqlDbType.Int).Value = Buscar_Direccion();
             Cmd.Parameters.Add("@SHA512", SqlDbType.VarChar).Value = oMéthodesBO.CreateSHAHash(oBO.Usuario,oBO.ContraseñaUsu, hashkey);
             Cmd.CommandType = CommandType.Text;
@@ -73,7 +73,7 @@ namespace PaperMID.Models
             Cmd.Parameters.Add("@TelefonoUsu", SqlDbType.VarChar).Value = oBO.TelefonoUsu;
             Cmd.Parameters.Add("@CorreoUsu", SqlDbType.VarChar).Value = oBO.CorreoUsu;
             Cmd.Parameters.Add("@IdTipoUsuario1", SqlDbType.Int).Value = oBO.IdTipoUsuario1;
-            Cmd.Parameters.Add("@IdDireccion2", SqlDbType.Int).Value = Buscar_Direccion();
+            Cmd.Parameters.Add("@IdDireccion2", SqlDbType.Int).Value = oBO.IdDireccion2;
             Cmd.Parameters.Add("@SHA512", SqlDbType.VarChar).Value = oMéthodesBO.CreateSHAHash(oBO.Usuario, oBO.ContraseñaUsu, hashkey);
             Cmd.CommandType = CommandType.Text;
             return oConexion.EjecutarSQL(Cmd);
@@ -81,7 +81,7 @@ namespace PaperMID.Models
 
         public DataTable Mostrar()
         {
-            return oConexion.TablaConnsulta("SELECT * FROM Usuario WHERE IdUsuario <>1;");
+            return oConexion.TablaConnsulta("SELECT * FROM Usuario WHERE IdUsuario <>1 AND IdTipoUsuario1 <>2;");
         }
         public BO.UsuarioBO Obtener_Usuario(String IdUsuario)
         {
@@ -100,8 +100,10 @@ namespace PaperMID.Models
             _Usuario.TelefonoUsu = row["TelefonoUsu"].ToString();
             _Usuario.CorreoUsu = row["CorreoUsu"].ToString();
             _Usuario.IdTipoUsuario1 = Convert.ToInt32(row["IdTipoUsuario1"].ToString());
+            IdTipoUsuario1= Convert.ToInt32(row["IdTipoUsuario1"].ToString());
             _Usuario.IdDireccion2 = Convert.ToInt32(row["IdDireccion2"]);
             IdDireccion2 = Convert.ToInt32(row["IdDireccion2"]);
+            _Usuario.ContraseñaUsu = oMéthodesBO.Desencriptar(row["ContraseñaUsu"].ToString());
             return _Usuario;
         }
         public BO.DireccionBO Obtener_Direccion_Usuario()
@@ -118,6 +120,7 @@ namespace PaperMID.Models
             _Direccion.NumExteDir = Row["NumExteDir"].ToString();
             _Direccion.NumInteDir = Row["NumInteDir"].ToString();
             _Direccion.IdMunicipio1 = Convert.ToInt32(Row["IdMunicipio1"].ToString());
+            IdMunicipio1= Convert.ToInt32(Row["IdMunicipio1"].ToString());
             return _Direccion;
         }
 

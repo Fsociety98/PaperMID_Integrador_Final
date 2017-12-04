@@ -1,30 +1,51 @@
 ﻿@model PaperMID.BO.DireccionBO
+<div class="box-header with-border">
+    <h3 class="box-title">Dirección</h3>
+    <input type="hidden" name="IdPais" value="@Model.IdDireccion" /><!--Input oculto/Sirve para recuperar el ID-->
+</div>
+<br />
 <div class="row">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Calle</label>
-                    <input class="form-control" type="text" name="CalleDir" value="@Model.CalleDir" />
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Calle</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    C.
                 </div>
+                <input class="form-control" placeholder="Calle" type="text" name="CalleDir" value="@Model.CalleDir" required />
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Cruzamientos</label>
-                    <input class="form-control" type="text" name="CruzaDir" value="@Model.CruzaDir" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Cruzamientos</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    CR.
                 </div>
+                <input class="form-control" placeholder="Cruzamientos" type="text" name="CruzaDir" value="@Model.CruzaDir" required />
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Colonia</label>
-                    <input class="form-control" type="text" name="ColoniaDir" value="@Model.ColoniaDir" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Colonia</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    COL.
                 </div>
+                <input class="form-control" placeholder="Colonia" type="text" name="ColoniaDir" value="@Model.ColoniaDir" required />
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Código Postal</label>
-                    <input class="form-control" type="text" name="CPDir" value="@Model.CPDir" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Código Postal</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    CP.
                 </div>
+                <input class="form-control" placeholder="Código Postal" type="text" name="CPDir" value="@Model.CPDir" required />
             </div>
         </div>
     </div>
@@ -35,19 +56,29 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Número Interior</label>
-                    <input class="form-control" type="text" name="NumInteDir" value="@Model.NumInteDir" />
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            INT.
+                        </div>
+                        <input class="form-control" placeholder="Número Interior" type="text" name="NumInteDir" value="@Model.NumInteDir" required />
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Número Exterior</label>
-                    <input class="form-control" type="text" name="NumExteDir" value="@Model.NumExteDir" />
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            EXT.
+                        </div>
+                        <input class="form-control" placeholder="Número Exterior" type="text" name="NumExteDir" value="@Model.NumExteDir" required />
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Municipio</label>
-                    @*@Html.DropDownList("IdMunicipio1", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.DropDownList("IdMunicipio1", null, htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;" })
                 </div>
             </div>
         </div>

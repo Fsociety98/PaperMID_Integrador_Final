@@ -3,43 +3,51 @@
     ViewBag.Title = "Pais";
     Layout = "~/Views/Master/_LayoutAdministrador.cshtml";
 }
-<section class="content-header">
-    <h1>
-        País
-    </h1>
-</section>
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Datos</h3>
-                </div>
-                @using (Ajax.BeginForm("Agregar_Pais", "Pais", new AjaxOptions { HttpMethod = "POST" }))
-                {
-                    @Html.AntiForgeryToken()
+<div class="ajax-content container-fluid">
+    <section class="content-header">
+        <h1>
+            País
+        </h1>
+    </section>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos País</h3>
+                    </div>
+                    @using (Ajax.BeginForm("Agregar_Pais", "Pais", new AjaxOptions { HttpMethod = "POST" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del Pais</label>
-                                        <input type="text" class="form-control" name="NombrePais" />
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nombre del Pais</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-address-book"></i>
+                                                </div>
+                                                <input type="text" placeholder="Nombre del País" class="form-control" name="NombrePais" required />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-info pull-right">Guardar</button>
-                        </div>
-                    </form>
-                }
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">Guardar</button>
+                            </div>
+                        </form>
+                    }
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
-@{ Html.RenderAction("MostrarPaisParcial", "Pais");}
+    </section>
+    @{ Html.RenderAction("MostrarPaisParcial", "Pais");}
+</div>
+
 

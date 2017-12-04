@@ -10,8 +10,10 @@ namespace PaperMID.BO
         public int IdPromo { get; set; }
         public string NombrePromo { get; set; }
         public string DescripcionPromo { get; set; }
+        public string RangoPromo { get; set; }
         public string FechaInicioPromo { get; set; }
         public string FechaFinPromo { get; set; }
+        public double DescuentoPromo { get; set; }
         public int IdProve { get; set; }
         public DateTime FechaRegistroPromo { get; set; }
         public Boolean StatusPromo { get; set; }

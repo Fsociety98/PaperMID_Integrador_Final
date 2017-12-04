@@ -34,6 +34,31 @@
     <script src="~/Style/Back/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Style/Back/dist/js/adminlte.min.js"></script>
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="~/Style/Back/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- bootstrap datepicker -->
+    <script src="~/Style/Back/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- PACE -->
+    <script src="~/Style/Back/bower_components/PACE/pace.min.js"></script>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Style/Back/bower_components/select2/dist/css/select2.min.css">
+    <!-- Select2 -->
+    <script src="~/Style/Back/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Style/Back/bower_components/fastclick/lib/fastclick.js"></script>
+ 
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Style/Back/dist/js/demo.js"></script>
+    <link rel="stylesheet" href="~/Style/Back/css/skins/_all-skins.min.css">
+    <!-- date-range-picker -->
+    <script src="~/Style/Back/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Style/Back/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/Style/Back/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- InputMask -->
+    <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="~/Style/Back/plugins/input-mask/jquery.inputmask.extensions.js"></script>
     @{
         if (Session["IdUsuario"] != null)
         {
@@ -112,10 +137,10 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header text-center">ADMINISTRADOR</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li><a href="@Url.Action("Proveedor","Proveedor")"><i class="fa fa-truck" aria-hidden="true"></i> <span>Proveedores</span></a></li>
-                    <li><a href="@Url.Action("Producto","Producto")"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Productos</span></a></li>
-                    <li><a href="@Url.Action("TipoProducto","TipoProducto")"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Tipos de Producto</span></a></li>
-                    <li><a href="@Url.Action("Promociones","Promociones")"><i  class="fa fa-certificate" aria-hidden="true"></i> <span>Promociones</span></a></li>
+                    <li><a href="@Url.Action("Proveedor","Proveedor")" class="ajax"><i class="fa fa-truck" aria-hidden="true"></i> <span>Proveedores</span></a></li>
+                    <li><a href="@Url.Action("Producto","Producto")" class="ajax"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Productos</span></a></li>
+                    <li><a href="@Url.Action("TipoProducto","TipoProducto")" class="ajax"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Tipos de Producto</span></a></li>
+                    <li><a href="@Url.Action("Promociones","Promociones")" class="ajax"><i  class="fa fa-certificate" aria-hidden="true"></i> <span>Promociones</span></a></li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-address-book" aria-hidden="true"></i> <span>Dirección</span>
@@ -124,12 +149,12 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Pais", "Pais")">País</a></li>
-                            <li><a href="@Url.Action("Estado", "Estado")">Estado</a></li>
-                            <li><a href="@Url.Action("Municipio","Municipio")">Municipio</a></li>
+                            <li><a href="@Url.Action("Pais", "Pais")" class="ajax">País</a></li>
+                            <li><a href="@Url.Action("Estado", "Estado")" class="ajax">Estado</a></li>
+                            <li><a href="@Url.Action("Municipio","Municipio")" class="ajax" title="Municipio">Municipio</a></li>
                         </ul>
                     </li>
-                    <li><a href="@Url.Action("Usuario","Usuario")"><i class="fa fa-user-circle" aria-hidden="true"></i> <span>Usuarios</span></a></li>
+                    <li><a href="@Url.Action("Usuario","Usuario")" class="ajax" title="Usuarios"><i class="fa fa-user-circle" aria-hidden="true"></i> <span>Usuarios</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -216,6 +241,81 @@
         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
+    <script type="text/javascript">
+  // Cargar los formularios sin por AJAX.
+  $(document).ajaxStart(function () {
+    Pace.restart()
+  })
+    </script>
+    <script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker({
+        
+    })
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+    </script>
 </body>
 </html>
 

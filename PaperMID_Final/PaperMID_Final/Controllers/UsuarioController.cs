@@ -56,6 +56,7 @@ namespace PaperMID.Controllers
             oUsuarioBO.CorreoUsu = CorreoUsu;
             oUsuarioBO.ContraseñaUsu = ContraseñaUsu;
             oUsuarioBO.Usuario = Usuario;
+            oUsuarioBO.IdTipoUsuario1 = 2;
 
             if (ImagenUsu!=null&&ImagenUsu.ContentLength>0)
             {
@@ -76,7 +77,7 @@ namespace PaperMID.Controllers
         public ActionResult Agregar_Usuario_Administrador(String NombreUsu, String ApellidoPaternoUsu,
     String ApellidoMaternoUsu, String FechaNacimientoUsu, String TelefonoUsu, String CorreoUsu, String Usuario, String ContraseñaUsu,
     String ConfirmarContraseñaUsu, HttpPostedFileBase ImagenUsu, String CalleDir, String NumInteDir, String NumExteDir, String CruzaDir,
-    String ColoniaDir, String CPDir, String IdMunicipio1)
+    String ColoniaDir, String CPDir, String IdMunicipio1,String IdTipoUsuario1)
         {
             _oDireccionBO = new BO.DireccionBO();
             _oDireccionBO.CalleDir = CalleDir;
@@ -96,6 +97,7 @@ namespace PaperMID.Controllers
             oUsuarioBO.CorreoUsu = CorreoUsu;
             oUsuarioBO.ContraseñaUsu = ContraseñaUsu;
             oUsuarioBO.Usuario = Usuario;
+            oUsuarioBO.IdTipoUsuario1 = Convert.ToInt32(IdTipoUsuario1);
 
             if (ImagenUsu != null && ImagenUsu.ContentLength > 0)
             {
@@ -123,12 +125,18 @@ namespace PaperMID.Controllers
         public ActionResult Actualizar_Usuario(string IdUsuario)
         {
             Obtener_Dic_Usuario(IdUsuario);//Llamo al método - para pasarle el IdUsuario.
+            var UsuarioBO = new BO.UsuarioBO();
+            //Cargar el DropDownList por ViewBag para poder usar AJAX.
+            ViewBag.IdTipoUsuario1 = new SelectList(UsuarioBO.TiposUsuario = oModel.Lista_Tipo_Usuario(), "IdTipoUsuario", "TipoUsu",oModel.IdTipoUsuario1);
             return View(oModel.Obtener_Usuario(IdUsuario));
         }
         [ChildActionOnly]
         public ActionResult Obtener_Dic_Usuario(string IdUsuario)
         {
             oModel.Obtener_Usuario(IdUsuario);
+            var direccionBO = new BO.DireccionBO();
+            ViewBag.IdMunicipio1 = new SelectList(direccionBO.municipios = oDireccionModel.ListaMunicipios(), "IdMunicipio", "NombreMuni",oModel.IdMunicipio1);
+            var UsuarioBO = new BO.UsuarioBO();
             return PartialView(oModel.Obtener_Direccion_Usuario());
         }
         [HttpPost]
@@ -136,7 +144,7 @@ namespace PaperMID.Controllers
         public ActionResult Actualizar_Datos_Usuario_Administrador(String NombreUsu, String ApellidoPaternoUsu,
 String ApellidoMaternoUsu, String FechaNacimientoUsu, String TelefonoUsu, String CorreoUsu, String Usuario, String ContraseñaUsu,
 String ConfirmarContraseñaUsu, HttpPostedFileBase ImagenUsu, String CalleDir, String NumInteDir, String NumExteDir, String CruzaDir,
-String ColoniaDir, String CPDir, String IdMunicipio1)
+String ColoniaDir, String CPDir, String IdMunicipio1, String IdUsuario, String IdDireccion)
         {
             _oDireccionBO = new BO.DireccionBO();
             _oDireccionBO.CalleDir = CalleDir;
@@ -146,6 +154,8 @@ String ColoniaDir, String CPDir, String IdMunicipio1)
             _oDireccionBO.ColoniaDir = ColoniaDir;
             _oDireccionBO.CPDir = CPDir;
             _oDireccionBO.IdMunicipio1 = Convert.ToInt32(IdMunicipio1);
+            _oDireccionBO.IdDireccion = Convert.ToInt32(IdDireccion);
+
             oModel = new UsuarioModel();
             oUsuarioBO = new BO.UsuarioBO();
             oUsuarioBO.NombreUsu = NombreUsu;
@@ -156,6 +166,8 @@ String ColoniaDir, String CPDir, String IdMunicipio1)
             oUsuarioBO.CorreoUsu = CorreoUsu;
             oUsuarioBO.ContraseñaUsu = ContraseñaUsu;
             oUsuarioBO.Usuario = Usuario;
+            oUsuarioBO.IdUsuario = Convert.ToInt32(IdUsuario);
+
 
             if (ImagenUsu != null && ImagenUsu.ContentLength > 0)
             {
@@ -166,8 +178,8 @@ String ColoniaDir, String CPDir, String IdMunicipio1)
             {
                 oUsuarioBO.ImagenUsu = null;
             }
-            oDireccionModel.Agregar(_oDireccionBO);
-            oModel.Agregar(oUsuarioBO);
+            oDireccionModel.Modificar(_oDireccionBO);
+            oModel.Modificar(oUsuarioBO);
             return RedirectToAction("Usuario", "Usuario");
         }
     }
