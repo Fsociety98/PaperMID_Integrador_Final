@@ -47,7 +47,9 @@ namespace PaperMID.Controllers
             _PromoBO.IdProve = Convert.ToInt32(IdProve);
             _PromoBO.DescripcionPromo = DescripcionPromo;
             PromoModel.Agregar(_PromoBO);
-            return RedirectToAction("Promociones", "Promociones");
+            ViewBag.Agregado = true;
+            Promociones();
+            return View("Promociones");
         }
 
         public ActionResult ActualizarPromocion(int id)
@@ -81,13 +83,17 @@ namespace PaperMID.Controllers
             _PromoBO.IdProve = Convert.ToInt32(IdProve);
             _PromoBO.DescripcionPromo = DescripcionPromo;
             PromoModel.Modificar(_PromoBO);
-            return RedirectToAction("Promociones", "Promociones");
+            ViewBag.Actualizado = true;
+            Promociones();
+            return View("Promociones");
         }
         public ActionResult EliminarPromo(string id)
         {
             int Clave = int.Parse(id);
             PromoModel.Eliminar(Clave);
-            return RedirectToAction("Promociones", "Promociones");
+            ViewBag.Eliminado = true;
+            Promociones();
+            return View("Eliminado");
         }
 
         [ChildActionOnly]

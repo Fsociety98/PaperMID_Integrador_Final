@@ -62,8 +62,9 @@ namespace PaperMID.Controllers
 
                 _oFotoModel.Agregar(_oFotoBO);
             }
-
-            return RedirectToAction("Producto", "Producto");
+            ViewBag.Agregado = true;
+            Producto();
+            return View("Producto");
         }
         [ChildActionOnly]
         public ActionResult List_Productos(String Filtro_IdProveedor1, String Filtro_IdTipoProducto1)
@@ -87,7 +88,6 @@ namespace PaperMID.Controllers
             //Cargar el DropDownList por ViewBag para poder usar AJAX.
             ViewBag.IdTipoProducto1 = new SelectList(ProductoBO.TiposProducto = _oProductoModel.Lista_Tipo_Producto(), "IdTipoProducto", "TipoProducto", _oProductoModel.IdTipoProducto1);
             ViewBag.IdProveedor1 = new SelectList(ProductoBO.Proveedores = _oProductoModel.Lista_Proveedor(), "IdProveedor", "NombreProv", _oProductoModel.IdProveedor1);
-
             return View(_oProductoModel.Recuperar_Datos_Producto(CódigoProd));
         }
 
@@ -110,13 +110,16 @@ namespace PaperMID.Controllers
             _oProductoBO.IdTipoProducto1 = Convert.ToInt32(IdTipoProducto1);
 
             _oProductoModel.Modificar(_oProductoBO);
-            return RedirectToAction("Producto", "Producto");
+            ViewBag.Actualizado = true;
+            Producto();
+            return View("Producto");
         }
         public ActionResult Eliminar_Producto(String CódigoProd)
         {
             _oProductoModel.Eliminar(CódigoProd);
-            ViewBag.showSuccessAlert = true;
-            return RedirectToAction("Producto", "Producto");
+            ViewBag.Eliminado = true;
+            Producto();
+            return View("Producto");
         }
     }
 }

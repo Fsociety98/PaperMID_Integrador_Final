@@ -4,20 +4,13 @@
     ViewBag.Title = "Producto";
     Layout = "~/Views/Master/_LayoutAdministrador.cshtml";
 }
-    <!--Alertify-->
-<script src="~/Style/Back/dist/js/alertify.min.js"></script>
-<link href="~/Style/Back/dist/css/Alertify/alertify.bootstrap.css" rel="stylesheet" />
-<link href="~/Style/Back/dist/css/Alertify/alertify.core.css" rel="stylesheet" />
-<link href="~/Style/Back/dist/css/Alertify/alertify.default.css" rel="stylesheet" id="toggleCSS" />
+
 <div class="ajax-content container-fluid">
     <section class="content-header">
         <h1>
             Productos
             <a class="btn btn-info pull-right" href="@Url.Action("ReporteProducto", "Reportes")">Descargar Reporte&nbsp;&nbsp;<span class="fa  fa-cloud-download"></span></a>
         </h1>
-        <a href="#" id="alert">Alert Dialog</a><br>
-        <a href="#" id="success">Success Log</a><br>
-        <a href="#" id="confirm">Confirm Dialog</a><br>
     </section>
     <section class="content container-fluid">
         <div class="row">
@@ -358,3 +351,33 @@
 			return false;
 		});
 </script>
+@if (ViewBag.Agregado!=null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Producto Agregado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Eliminado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Producto Eliminado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Actualizado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Producto Actualizado con éxito!");
+            return false;
+        }
+    </script>
+}

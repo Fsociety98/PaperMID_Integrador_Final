@@ -86,3 +86,34 @@
     </section>
     @{ Html.RenderAction("ListarPromociones", "Promociones");}
 </div>
+
+@if (ViewBag.Agregado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Promoción Agregada con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Eliminado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Promoción Eliminada con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Actualizado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Promoción Actualizada con éxito!");
+            return false;
+        }
+    </script>
+}

@@ -31,8 +31,9 @@ namespace PaperMID.Controllers
             _ProveedorBO.TelefonoProv = TelefonoProv;
             _ProveedorBO.CorreoProv = CorreoProv;
             _ProvMod.Agregar(_ProveedorBO);
-
-            return RedirectToAction("Proveedor", "Proveedor");
+            ViewBag.Agregado = true;
+            Proveedor();
+            return View("Proveedor");
         }
         public ActionResult Actualizar_Proveedor(int id)
         {
@@ -48,14 +49,17 @@ namespace PaperMID.Controllers
             _ProveedorBO.NombreProv = NombreProv;
             _ProveedorBO.TelefonoProv = TelefonoProv;
             _ProveedorBO.CorreoProv = CorreoProv;
-
             _ProvMod.Modificar(_ProveedorBO);
+            ViewBag.Actualizado = true;
+            Proveedor();
             return View("Proveedor");
         }
         public ActionResult EliminarProveedor(string id)
         {
             int Clave = int.Parse(id);
             _ProvMod.Eliminar(Clave);
+            ViewBag.Eliminado = true;
+            Proveedor();
             return View("Proveedor");
         }
 

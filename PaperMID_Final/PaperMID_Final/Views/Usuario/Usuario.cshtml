@@ -318,3 +318,33 @@
         });
     });
 </script>
+@if (ViewBag.Agregado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Usuario Agregado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Eliminado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Usuario Eliminado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Actualizado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Usuario Actualizado con éxito!");
+            return false;
+        }
+    </script>
+}

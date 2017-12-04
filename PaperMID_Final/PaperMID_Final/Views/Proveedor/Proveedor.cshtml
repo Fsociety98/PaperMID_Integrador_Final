@@ -73,3 +73,33 @@
     </section>
     @{ Html.RenderAction("MostrarListaProveedor", "Proveedor");}
 </div>
+@if (ViewBag.Agregado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Proveedor Agregado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Eliminado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Proveedor Eliminado con éxito!");
+            return false;
+        }
+    </script>
+}
+@if (ViewBag.Actualizado != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            reset();
+            alertify.alert("Proveedor Actualizado con éxito!");
+            return false;
+        }
+    </script>
+}
