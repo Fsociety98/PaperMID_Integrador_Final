@@ -6740,6 +6740,7 @@
     <Content Include="Style\Front\assets\img\mision.jpg" />
     <Content Include="Style\Front\assets\img\mockup.png" />
     <Content Include="Style\Front\assets\img\new_logo.png" />
+    <Content Include="Style\Front\assets\img\paper11.png" />
     <Content Include="Style\Front\assets\img\tim_80x80.png" />
     <Content Include="Style\Front\assets\img\valo.jpg" />
     <Content Include="Style\Front\assets\img\vision.jpg" />
@@ -7622,8 +7623,8 @@
     <EmbeddedResource Include="Reportes\Reportes\ClienteRepor.rdlc" />
     <EmbeddedResource Include="Reportes\Reportes\DetalleVentaRepor.rdlc" />
     <EmbeddedResource Include="Reportes\Reportes\EmpleadoRepor.rdlc" />
-    <EmbeddedResource Include="Reportes\Reportes\ProductoRepor.rdlc" />
-    <EmbeddedResource Include="Reportes\Reportes\ProveedorRepor.rdlc" />
+    <EmbeddedResource Include="Reportes\Reportes\Reporte_Producto.rdlc" />
+    <EmbeddedResource Include="Reportes\Reportes\Reporte_Provedor.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Style\Back\bower_components\moment\moment.d.ts" />
