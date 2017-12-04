@@ -69,7 +69,7 @@ namespace PaperMID.Controllers
             } 
             oDireccionModel.Agregar(_oDireccionBO);
             oModel.Agregar(oUsuarioBO);
-            return RedirectToAction("IniciarSesion", "Publico");
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
