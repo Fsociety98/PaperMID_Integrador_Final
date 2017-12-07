@@ -6716,6 +6716,11 @@
     <Content Include="Style\Back\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Style\Back\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Style\Back\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Style\Calendar\fullcalendar.css" />
+    <Content Include="Style\Calendar\fullcalendar.js" />
+    <Content Include="Style\Calendar\fullcalendar.print.css" />
+    <Content Include="Style\Calendar\jquery\jquery-1.10.2.js" />
+    <Content Include="Style\Calendar\jquery\jquery-ui.custom.min.js" />
     <Content Include="Style\Front\assets\css\demo.css" />
     <Content Include="Style\Front\assets\css\gsdk.css" />
     <Content Include="Style\Front\assets\css\Personalizacion.css" />
@@ -6786,6 +6791,7 @@
     <Compile Include="BO\TipoUsuarioBO.cs" />
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -7609,6 +7615,9 @@
     <Content Include="Style\Front\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Style\Front\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Style\Login\scss\style.scss" />
+    <Content Include="Style\Calendar\jquery\.DS_Store" />
+    <Content Include="Style\Calendar\.DS_Store" />
+    <Content Include="Views\Calendario\Calendario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
