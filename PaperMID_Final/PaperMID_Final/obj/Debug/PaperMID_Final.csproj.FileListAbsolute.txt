@@ -106,7 +106,6 @@ C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\P
 C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\bin\es\System.Web.Helpers.resources.dll
 C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\bin\es\System.Web.Mvc.resources.dll
 C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\PaperMID_Final.csprojResolveAssemblyReference.cache
-C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\RdlCompile.cache
-C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\RdlCompile.compiled
 C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\PaperMID_Final.dll
 C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\PaperMID_Final.pdb
+C:\Users\Jesus Uicab\Documents\GitHub\PaperMID_Integrador_Final\PaperMID_Final\PaperMID_Final\obj\Debug\PaperMID_Final.csproj.CoreCompileInputs.cache

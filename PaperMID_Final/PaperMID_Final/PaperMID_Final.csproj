@@ -6790,6 +6790,7 @@
     <Compile Include="BO\TipoProductoBO.cs" />
     <Compile Include="BO\TipoUsuarioBO.cs" />
     <Compile Include="BO\UsuarioBO.cs" />
+    <Compile Include="BO\VentaBO.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -7618,6 +7619,7 @@
     <Content Include="Style\Calendar\jquery\.DS_Store" />
     <Content Include="Style\Calendar\.DS_Store" />
     <Content Include="Views\Calendario\Calendario.cshtml" />
+    <Content Include="Views\Venta\Ventas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
